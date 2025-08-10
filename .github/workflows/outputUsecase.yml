@@ -1,0 +1,14 @@
+name: Deployment Workflow
+
+on: workflow_dispatch
+
+jobs:
+  generate-message:
+    runs-on: ubuntu-latest
+    outputs:
+      deploy_msg: ${{ steps.set-msg.outputs.message }}
+    steps:
+      - id: set-msg
+        run: echo "message=Deployment started at $(date)" >> $GITHUB_OUTPUT
+
+ 
