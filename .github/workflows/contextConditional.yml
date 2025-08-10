@@ -1,0 +1,23 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize]
+jobs:
+  show-github-context:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: print basic repo info
+        run: |
+          echo "Repository:    ${{ github.repository }}"
+          echo "Workflow:      ${{ github.workflow }}"
+      - name: Print branch or tag (only on push)
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          echo "Ref:           ${{ github.ref }}"
+          echo "Branch/Tag:    ${{ github.ref_name }}"
