@@ -1,7 +1,14 @@
 name: First Workflow
 
 
-on: push
+on: 
+  push:
+   branches:
+     - master
+   paths-ignore:
+      -'*.docs'
+   tags-ignore:
+     - 'v1.*'
    
    
   
